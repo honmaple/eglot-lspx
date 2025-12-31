@@ -3,6 +3,8 @@ package main
 import (
 	"reflect"
 	"slices"
+	"io"
+	"errors"
 )
 
 type piperwc struct {

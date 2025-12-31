@@ -20,10 +20,13 @@ func parseArgs(args []string) [][]string {
 			if len(strs) > 0 {
 				cmds = append(cmds, strs)
 			}
-			strs = strs[:0]
+			strs = make([]string, 0)
 			continue
 		}
 		strs = append(strs, args[i])
+	}
+	if len(strs) > 0 {
+		cmds = append(cmds, strs)
 	}
 	return cmds
 }
