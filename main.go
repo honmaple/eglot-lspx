@@ -63,6 +63,8 @@ func main() {
 
 			ctx := context.Background()
 
+			diags := NewDiagnosticCache()
+
 			procs := make([]*ProcessServer, 0)
 			for _, command := range parseArgs(os.Args[index+1:]) {
 				if len(command) >= 1 && command[0] == "" {
@@ -76,7 +78,7 @@ func main() {
 					cmd = exec.CommandContext(ctx, command[0], command[1:]...)
 				}
 
-				proc, err := NewProcessServer(ctx, cmd)
+				proc, err := NewProcessServer(ctx, cmd, diags)
 				if err != nil {
 					return err
 				}
